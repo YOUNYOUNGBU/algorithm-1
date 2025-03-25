@@ -1,4 +1,4 @@
-1. 스택으로 수열만들기 과제
+1. 스택으로 수열만들기 과제 방법 1
 
 코드
 def stack_sequence(target_sequence):
@@ -28,3 +28,35 @@ target = [4,3,6,8,7,5,2,1]  # 목표 수열
 result = stack_sequence(target)
 
 print(result)
+
+2. 스택으로 수열만들기 방법 2
+target = [4, 3, 6, 8, 7, 5, 2, 1] # 목표 수열
+
+def stack_sequence(target_sequence): # 스택 수열을 생성하고 출력하는 함수
+    stack = []  # 스택 리스트
+    operations = []  # 연산 기록을 저장할 리스트
+    current = 1  # 현재 숫자 1부터 시작
+
+    for num in target_sequence:
+        if num >= current:  # 목표 숫자가 현재 숫자보다 크거나 같은 경우
+            while num >= current:  # 현재 숫자가 목표 숫자에 도달할 때까지 반복
+                stack.append(current)  # 현재 숫자를 스택에 추가
+                current += 1  # 숫자를 하나 증가
+                operations.append("+")  # "-" 넣기
+
+            stack.pop()  # 목표 숫자에 도달했으므로 스택에서 제거(pop)
+            operations.append("-")  # pop("-") 연산을 기록
+        else: # 스택의 마지막 값이 목표 숫자보다 큰 경우
+            if stack[-1] > num:  
+                print("NO")  # 수열 생성이 불가능하므로 "NO" 출력
+                return # 함수 종료
+            stack.pop()  # 스택에서 숫자 제거(pop)
+            operations.append("-")  # "-" 넣기
+    
+    return operations  # 연산 기록 반환
+
+result = stack_sequence(target)
+
+if result:  # 결과가 존재할 경우
+    print("\n".join(result))  # 결과를 줄바꿈하여 출력
+
