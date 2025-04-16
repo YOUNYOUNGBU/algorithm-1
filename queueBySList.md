@@ -76,6 +76,9 @@ if __name__ == "__main__":
   </code>
 </pre>
 
+## 6주차 과제
+![image](https://github.com/user-attachments/assets/515245f0-fef3-4278-9d8a-c567ca600af5)
+
 
 
 
