@@ -33,7 +33,7 @@ if __name__ == "__main__":
 </code>
 </pre>
 
-1. 스택으로 수열만들기 과제 방법 1
+# 1. 스택으로 수열만들기 과제 방법 1
 ## 코드
 <pre>
     <code>
@@ -58,15 +58,16 @@ if __name__ == "__main__":
             return "NO"
 
     return "\n".join(operations)
-    </code>
-</pre>
+ 
 
 target = [4,3,6,8,7,5,2,1]  # 목표 수열
 result = stack_sequence(target)
 
 print(result)
+   </code>
+</pre>
 
-2. 스택으로 수열만들기 방법 2
+# 2. 스택으로 수열만들기 방법 2
 ## 코드
 <pre>
     <code>
