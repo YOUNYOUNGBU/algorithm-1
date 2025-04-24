@@ -1,7 +1,43 @@
-1. 스택으로 수열만들기 과제 방법 1
+# 스택으로 수열 만들기 실습
+## 코드
+<pre>
+<code>
+    def push(item):
+    global top
+    stack.append(item)
+    top += 1 #top = top + 1
 
-코드
-def stack_sequence(target_sequence):
+    def pop():
+    global top
+    if len(stack) != 0:
+        #item = stack.pop(-1)
+        item = stack.pop(top)
+        top -= 1 #top = top - 1
+        return item
+
+stack = []     
+top = -1 # -1, 0 , 1, 2, 1
+if __name__ == "__main__":
+    push("apple") #apple 삽입
+    push("orange") #orange 삽입
+    push("cherry") #cherry 삽입
+    print("apple, orange, cherry를 push후=\t", end = "") 
+    print(stack, "\t <- top") #['apple', 'orange', 'cherry'] 출력
+    print("TOP 항목 = " , end = '') 
+    topvalue = pop() #cherry 삭제
+    print("topvalue=", topvalue)
+    push("pear") #pear 추가
+    print("pear추가후 top=", end = "")
+    topval2 = pop() #pear 삭제
+    print("topval2=" , topval2)
+</code>
+</pre>
+
+1. 스택으로 수열만들기 과제 방법 1
+## 코드
+<pre>
+    <code>
+        def stack_sequence(target_sequence):
     stack = []
     operations = []
     current = 1
@@ -22,15 +58,19 @@ def stack_sequence(target_sequence):
             return "NO"
 
     return "\n".join(operations)
+    </code>
+</pre>
 
-# 사용 예제
 target = [4,3,6,8,7,5,2,1]  # 목표 수열
 result = stack_sequence(target)
 
 print(result)
 
 2. 스택으로 수열만들기 방법 2
-target = [4, 3, 6, 8, 7, 5, 2, 1] # 목표 수열
+## 코드
+<pre>
+    <code>
+        target = [4, 3, 6, 8, 7, 5, 2, 1] # 목표 수열
 
 def stack_sequence(target_sequence): # 스택 수열을 생성하고 출력하는 함수
     stack = []  # 스택 리스트
@@ -59,6 +99,9 @@ result = stack_sequence(target)
 
 if result:  # 결과가 존재할 경우
     print("\n".join(result))  # 결과를 줄바꿈하여 출력
+</code>
+</pre>
+
 
 느낀점: 파이썬은 공부를 많이 안해서 마지막 코드에 ";"를 안붙인다거나 if문이나 for문을 사용할 때 중괄호를 넣지 않는다는 점이 자바랑 많이 달라서 헷갈렸다.
 막히는 부분이 많아서 챗GPT의 힘을 빌렸지만 조금 만 더 공부하면 혼자 짤 수 있을 것같다.
