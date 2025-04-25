@@ -46,3 +46,85 @@ if __name__== "__main__":
     s.insert_front("apple")   # "apple"을 앞에 추가
     s.insert_front("orange")  # "orange"를 앞에 추가 → 맨 앞이 orange
     s.printList()  # 출력: orange =>apple
+# 예외 처리 클래스 정의
+class EmptyError(Exception):
+    pass
+
+# 연결 큐 클래스 정의
+class LinkedQueue:
+
+    # 내부 클래스: 노드 정의
+    class Node:
+        def __init__(self, item, link):
+            self.item = item  # 노드에 저장할 데이터
+            self.next = link  # 다음 노드를 가리키는 포인터
+
+    # 생성자: 큐 초기 설정
+    def __init__(self):
+        print("난 LinkedQueue 기본 생성자")
+        self.front = None   # 큐의 맨 앞 노드
+        self.rear = None    # 큐의 맨 뒤 노드
+        self.size = 0       # 노드 개수
+
+    # 큐가 비었는지 확인
+    def isEmpty(self):
+        return self.size == 0
+
+    # 큐에 데이터 추가 (enqueue)
+    def add(self, item):
+        newnode = self.Node(item, None)  # 새 노드 생성
+        if self.isEmpty():
+            self.front = newnode  # 큐가 비어있으면 front도 설정
+        else:
+            self.rear.next = newnode  # 마지막 노드의 다음을 새 노드로 연결
+
+        self.rear = newnode  # rear를 새 노드로 업데이트
+        self.size += 1       # 크기 증가
+
+    # 큐 상태 출력
+    def dispq(self):
+        p = self.front
+        print("front=>", end="")
+        while p:
+            if p.next is not None:
+                print("{!s:<7}".format(p.item), "=>", end="")
+            else:
+                print(p.item, end='')
+            p = p.next
+        print(" :rear")
+
+    # 큐에서 데이터 꺼내기 (dequeue)
+    def delete(self):
+        if self.isEmpty():
+            raise EmptyError("queue가 텅 비어있음")
+        else:
+            fitem = self.front.item     # 삭제할 데이터 저장
+            oldfront = self.front       # 현재 front 노드 저장
+            self.front = self.front.next  # front를 다음 노드로 이동
+            del oldfront                # 기존 front 삭제
+            self.size -= 1
+
+            # 삭제 후 큐가 비었다면 rear도 초기화
+            if self.isEmpty():
+                self.rear = None
+
+        return fitem  # 삭제한 데이터 반환
+
+# 실행부: 큐 테스트
+if __name__ == "__main__":
+    q = LinkedQueue()
+    q.add("apple")
+    q.add("orange")
+    q.add("cherry")
+    q.add("pear")
+    print("사과, 오렌지, 체리, 배 삽입 후 =", end='')
+    q.dispq()  # front=>apple => orange => cherry => pear :rear
+
+    delfruit = q.delete()
+    print("사과 삭제 후 delfruit =", delfruit)
+    q.dispq()  # front=>orange => cherry => pear :rear
+
+    print("front가 가리키는 orange 노드 삭제 후 queue=")
+    delfruit = q.delete()
+    print("오렌지 삭제 후 delfruit =", delfruit)
+    q.dispq()  # front=>cherry => pear :rear
