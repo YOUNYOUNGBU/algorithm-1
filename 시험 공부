@@ -1,0 +1,48 @@
+# 단일 연결 리스트(Singly Linked List) 구현 클래스
+class SList:
+    
+    # 연결 리스트 내부에서 사용할 Node 클래스 (한 칸짜리 상자)
+    class Node:
+        def __init__(self, item, link):
+            self.item = item  # 노드에 저장할 데이터
+            self.next = link  # 다음 노드를 가리키는 링크
+
+    # SList의 생성자 (리스트가 처음 생성될 때 실행됨)
+    def __init__(self):
+        print("난 SList의 생성자")  # 생성자 실행 확인용 출력
+        self.head = None  # 리스트의 첫 번째 노드를 가리킴 (처음엔 없음)
+        self.size = 0     # 리스트에 들어있는 노드 수
+
+    # 리스트가 비어있는지 확인하는 함수
+    def isEmpty(self):
+        return self.size == 0
+
+    # 리스트 앞쪽에 데이터를 추가하는 함수
+    def insert_front(self, item):
+        if self.isEmpty():  # 리스트가 비어 있다면
+            self.head = self.Node(item, None)  # 새 노드를 만들어 head로 지정
+        else:
+            # 새 노드의 next는 현재 head, 그리고 그 새 노드를 head로 바꿈
+            self.head = self.Node(item, self.head)
+        self.size += 1  # 노드 개수 하나 증가
+
+    # 리스트에 들어있는 모든 데이터를 출력하는 함수
+    def printList(self):
+        p = self.head  # head에서부터 시작
+        while p:  # p가 None이 아닐 때까지 반복 (즉, 끝날 때까지)
+            if p.next is not None:
+                print(p.item, "=>", end="")  # 다음 노드가 있으면 "=>" 함께 출력
+            else:
+                print(p.item)  # 마지막 노드는 그냥 출력
+            p = p.next  # 다음 노드로 이동
+
+# 전역 함수 (지금은 아무 일도 안 함)
+def globalFunc():
+    pass
+
+# 이 파일을 직접 실행했을 때만 실행되는 코드 (import 하면 실행 안 됨)
+if __name__== "__main__":
+    s = SList()  # SList 객체 생성 (출력: 난 SList의 생성자)
+    s.insert_front("apple")   # "apple"을 앞에 추가
+    s.insert_front("orange")  # "orange"를 앞에 추가 → 맨 앞이 orange
+    s.printList()  # 출력: orange =>apple
