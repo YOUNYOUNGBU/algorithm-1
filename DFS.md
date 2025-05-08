@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/0a5ac178-32f1-4a06-96db-6b5adff7947f)
 # 깊이 우선 탐색(DFS, Depth-First Search)이란? 
 그래프나 트리 자료 구조를 탐색하는 알고리즘 중 하나.
 
