@@ -53,3 +53,43 @@ A B D E C F 위 코드는 A 노드부터 깊이 우선 탐색을 진행하여 �
 3. 경로가 깊은 그래프에 적합
    
 4. 무한 루프에 빠지지 않도록 방문 여부 체크 필수
+
+## (4) DFS 코드 예시
+<pre>
+<code>
+  # 노드 개수(n)와 에지 개수(m) 입력
+n, m = map(int, input().split())
+
+# 그래프 데이터 저장을 위한 인접 리스트 초기화
+A = [[] for _ in range(n + 1)]
+
+# 방문 기록 리스트 초기화
+visited = [False] * (n + 1)
+
+# 그래프 데이터 저장
+for _ in range(m):
+    u, v = map(int, input().split())  # 연결된 두 노드 입력
+    A[u].append(v)
+    A[v].append(u)  # 무방향 그래프의 경우 양방향 연결
+
+# DFS 구현 (재귀 함수 형태)
+def dfs(node):
+    visited[node] = True  # 현재 노드 방문 기록
+    for neighbor in A[node]:  # 현재 노드의 연결된 노드들 탐색
+        if not visited[neighbor]:
+            dfs(neighbor)
+
+# 연결 요소 개수 계산
+connected_components = 0
+for i in range(1, n + 1):
+    if not visited[i]:  # 방문하지 않은 노드가 있다면
+        connected_components += 1  # 연결 요소 개수 증가
+        dfs(i)  # DFS 실행
+
+# 연결 요소 개수 출력
+print(connected_components)
+</code></pre>
+
+## 결과
+![image](https://github.com/user-attachments/assets/e37967b1-8bc8-4456-9752-ad05c329920d)
+
