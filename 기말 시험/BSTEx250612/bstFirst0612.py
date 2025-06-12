@@ -45,4 +45,4 @@ if __name__ == "__main__":
     #findDataIndex = binSearch(num , keyNum)
     findDataIndex = binSearch(ascSort , keyNum)
     print("검색된 키값의 index=%d" % findDataIndex)
-    print("검색된 키값=%d" % num[findDataIndex] )
+    print("검색된 키값=%d" % ascSort[findDataIndex] )
